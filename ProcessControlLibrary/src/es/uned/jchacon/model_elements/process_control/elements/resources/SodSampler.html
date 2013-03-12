@@ -1,0 +1,48 @@
+<html>
+  <head>
+  <title>SOD Sampler element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./SodSampler.png"> SOD sampler element 
+    </h2>
+    <p>
+      SODSampler implements a send-on-delta sampler which can easily be included to an EJS simulation.
+    </p>
+    <p>
+    The element implements a send-on-delta sampler, which can be directly incorporated to an EJS simulation
+    together with other elements from the process control library.    
+    <h3>Usage</h3>
+      <p>
+      To add a SODSampler element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+    </p>
+    <p>
+    A call to the element method <i>void setDelta</i> set the delta threshold.
+    <p>
+    The element provides the interface <i>Discrete</i>:
+    <ul>
+      <li> <i>int getNumberOfStates()</i> Returns the number of discrete states of the block.</li>
+      <li> <i>int getNumberOfInputs()</i> Returns the number of inputs of the block.</li>
+      <li> <i>int getNumberOfOutputs()</i> Returns the number of outputs of the block.</li>
+      <li> <i>double[] evaluate(double x)</i> Returns a value that should be used to detect an event.</li>
+      <li> <i>void update(double x)</i> Update the state of the block.</li>
+    </ul>
+    Note that the states and input is not stored into the element, but they must be handled by EJS.
+    </p>
+        <h3>Example of use</h3>
+    <pre>
+// Create an integrator
+double delta = 0.1;
+sod.setDelta(delta);
+    	
+sod.init(y); // where y is the sampled signal
+    	
+/* The following code must be inserted into an Event page */
+return sod.evaluate(y); // Zero condition
+
+sod.update(y); // Action
+    </pre>
+  </body>
+</html>

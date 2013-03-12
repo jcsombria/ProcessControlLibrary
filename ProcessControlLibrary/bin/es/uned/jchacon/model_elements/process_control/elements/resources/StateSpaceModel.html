@@ -1,0 +1,48 @@
+<html>
+  <head>
+  <title>Statistics model element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./StateSpaceModel.png"> State-space model element 
+    </h2>
+    <p>
+      StateSpaceModel implements a state-space model that can easily be included to an EJS simulation.
+    </p>
+    <p>
+    The element implements a state-space linear system model, which can be directly incorporated to an EJS simulation
+    together with other elements from the process control library.    
+    <h3>Usage</h3>
+      <p>
+      To add a StateSpaceModel element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+    </p>
+    <p>
+    A call to the element method <i>void setModel(double[] A, double[] B, double[] C, double[] D)</i> set the system matrices.
+    <p>
+    The element provides several methods to easily add to an ODE evolution page, for instance,
+    <ul>
+      <li> <i>double[] getRates()</i> Returns the derivatives of the states </li>
+      <li> <i>double[] getOutput()</i> Returns the output </li>
+    </ul>
+    Note that the states and input are not stored into the element, but they are handled by EJS.
+    </p>
+        <h3>Example of use</h3>
+    <pre>
+// Create an integrator
+A = new double[]{0};
+B = new double[]{1};
+C = new double[]{1};
+D = new double[]{0};   	
+sys.setModel(A, B, C, D);
+
+// Init the states and input vectors
+x = new double[sys.getNumberOfStates()];
+u = new double[sys.getNumberOfInputs()];
+
+/* The following code must be inserted into an ODE evolution page */
+d x[i] /dt = sys.getRates(x, u)
+    </pre>
+  </body>
+</html>

@@ -1,0 +1,28 @@
+<html>
+  <head>
+  <title>Saturation model element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./Saturation.png"> Saturation model element 
+    </h2>
+    <p>
+      <i>Saturation</i> implements a block whose output is equal to its input, if the value of the input is within
+      the valid range, otherwise it is limited to the saturation values.  
+      The element can be directly incorporated into an EJS simulation together with other elements from the process control library.    
+    <h3>Usage</h3>
+      <p>
+      To add a <i>Saturation</i> element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+    <p>
+    <h3>Example of use</h3>
+    <pre>
+// Set the saturation limits
+saturation.setRange(uMin, uMax);
+
+/* The saturated output is obtained with the following line of code */
+saturation.getOutput();
+    </pre>
+  </body>
+</html>

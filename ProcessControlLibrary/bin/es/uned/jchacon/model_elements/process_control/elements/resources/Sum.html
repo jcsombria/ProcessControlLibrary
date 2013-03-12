@@ -1,0 +1,35 @@
+<html>
+  <head>
+  <title>Sum model element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./Sum.png"> Sum model element 
+    </h2>
+    <p>
+      <i>Sum</i> implements a block whose output is the sum of its inputs.  
+      The element can be directly incorporated to an EJS simulation together with other elements from the process control library.    
+    <h3>Usage</h3>
+      <p>
+      To add a <i>Sum</i> element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+      <p>
+      Each input has a sign (Sign.POSITIVE or Sign.NEGATIVE) associated.
+      </p>
+    <p>
+    The output of the block is updated with a call to the method <i>update()<i>.
+    <p>
+     </p>
+        <h3>Example of use</h3>
+    <pre>
+// Set the inputs of the block
+sum.setSigns("+-");
+sum.setInput(0, setpoint, 0);
+sum.setInput(1, plant, 0);
+
+* The following code must be inserted into an Evolution page */
+sum.update();
+    </pre>
+  </body>
+</html>

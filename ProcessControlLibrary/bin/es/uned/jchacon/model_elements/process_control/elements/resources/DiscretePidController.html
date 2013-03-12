@@ -1,0 +1,45 @@
+<html>
+  <head>
+  <title>Continuous PID Controller element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./Statistics.gif"> PID controller element 
+    </h2>
+    <p>
+      PID implements a continuous PID controller to be included in an EJS simulation.
+    </p>
+    <p>
+    The element is a complete implementation of a PID controller, with an anti-windup mechanism and
+    derivative filter, which can be directly incorporated into an ODE page with the interface 
+    <i>Continuous</i>.
+    
+    <h3>Usage</h3>
+      <p>
+      To add a PID element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+    <p>
+    The element provides several methods to incorporate it into a simulation. Here are the most frequently used,
+    <ul>
+		<li><i>int getNumberOfStates();</i></li>
+		<li><i>int getNumberOfInputs();</i></li>
+		<li><i>int getNumberOfOutputs();</i></li>
+		<li><i>double[] getRates();</i></li>
+		<li><i>double[] getOutput();</i></li>
+    </ul>
+    </p>
+        <h3>Example of use</h3>
+    <pre>
+// Assume pid is the name of the PidController element and plant is a StateSpaceModel element
+xc = new double[]{pid.getNumberOfStates()};
+x = new double[]{plant.getNumberOfStates()};
+
+// This code must be inserted into an ODE evolution page
+d xc/dt = pid.getRates()
+
+// The output of the PID is obtained with <i>getOutput()</i>
+u = pid.getOutput();
+    </pre>
+  </body>
+</html>

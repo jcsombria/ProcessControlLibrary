@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/bsh.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/comSun5.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/comSun6.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/comSun7.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/ejs.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/ejs_lib.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/locales.jar"/>
+	<classpathentry kind="lib" path="/home/jchacon/workspaces/eclipse_workspace/Ejs/distribution/bin/osp.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
