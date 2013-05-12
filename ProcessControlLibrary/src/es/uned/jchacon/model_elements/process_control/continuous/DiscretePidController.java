@@ -1,5 +1,17 @@
 package es.uned.jchacon.model_elements.process_control.continuous;
 
+/**
+ * 
+ * @author jcsombria
+ *
+ *	DiscretePidController
+ *
+ *	Class to implement a discrete PID controller.
+ *               ________
+ *	setpoint ---|        |
+ *	output   ---| PID(z) |---- control action
+ *	tracking ---|________|
+ */
 
 public class DiscretePidController extends AbstractBlock implements Discrete {
 	private double kp;
@@ -18,7 +30,7 @@ public class DiscretePidController extends AbstractBlock implements Discrete {
 	private double n;
 	
 	public String sayHello() {
-		return "Hello World! Here I am, a new PID!";
+		return "Hello World! Here I am, a new discrete PID!";
 	}
 
 	public DiscretePidController() {
@@ -143,9 +155,4 @@ public class DiscretePidController extends AbstractBlock implements Discrete {
 		// TODO Auto-generated method stub
 	}
 
-	@Override
-	public void updateOutput() {
-		// TODO Auto-generated method stub
-		
-	}
 }

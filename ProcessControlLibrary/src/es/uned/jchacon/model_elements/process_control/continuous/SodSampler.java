@@ -54,7 +54,7 @@ public class SodSampler extends AbstractBlock implements Discrete, Siso {
 		y[0] += Math.signum(value - y[0])*levels*delta;
 	}
 
-	@Override
+//	@Override
 	public void updateOutput() { update(getInput(0)); }
 
 	@Override

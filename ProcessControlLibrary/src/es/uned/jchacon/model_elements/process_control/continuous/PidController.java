@@ -1,5 +1,18 @@
 package es.uned.jchacon.model_elements.process_control.continuous;
 
+/**
+ * 
+ * @author jcsombria
+ *
+ *	DiscretePidController
+ *
+ *	Class to implement a continuous PID controller.
+ *               ________
+ *	setpoint ---|        |
+ *	output   ---| PID(s) |---- control action
+ *	tracking ---|________|
+ */
+
 public class PidController extends StateSpaceModel implements Siso {
 	private double setpoint;
 	private double kp = 1.0;
@@ -16,11 +29,10 @@ public class PidController extends StateSpaceModel implements Siso {
 	private double ks;
 	
 	public String hello() {
-		return "Hello World! Here I am, a new PID!";
+		return "Hello World! Here I am, a new continuous PID!";
 	}
 
 	public PidController() {
-//		super(new double[][]{{0, 0}, {0, -1/20}}, new double[][]{{1}, {21}}, new double[][]{{1.0, 1.0}}, new double[][]{{21.0}});
 		ts = 1;
 		kp = 1;
 		ki = 1;
@@ -35,10 +47,6 @@ public class PidController extends StateSpaceModel implements Siso {
 	}
 
 	public PidController(double Kp, double Ki, double Kd) {
-//		super(new double[][]{{0, 0}, {0, -20/Kd}}, new double[][]{{1}, {Kd*20}}, new double[][]{{Ki, Kd}}, new double[][]{{Kp+Kd*20}});
-//		this.kp = Kp;
-//		this.ki = Ki;
-//		this.kd = Kd;
 		setParameters(kp, ki, kd, 2, 1);
 		antiwindup = false;
 		this.uMin = 0;		
@@ -48,14 +56,9 @@ public class PidController extends StateSpaceModel implements Siso {
 
 	public PidController(double kp, double ki, double kd, double n, boolean antiwindup, double ks, double uMin, double uMax) {
 		setParameters(kp, ki, kd, n, ks);
-//		super(new double[][]{{0, 0}, {0, -n/kd}}, new double[][]{{1}, {kd*n}}, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n}});
-//		this.kp = kp;
-//		this.ki = ki;
-//		this.kd = kd;
 		this.antiwindup = antiwindup;
 		this.uMin = uMin;		
 		this.uMax = uMax;
-//		setKs(ks);
 		t_last = 0;
 	}
 
@@ -66,52 +69,36 @@ public class PidController extends StateSpaceModel implements Siso {
 		this.ks = (ks > 0) ? ks : 0;
 		this.n = (n > 0) ? n : 0;		
 		if(kd > 0) {
-			setModel(new double[][]{{0, 0}, {0, -n/kd}}, new double[][]{{1}, {kd*n}}, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n}});
+			setModel(new double[][]{{0, 0}, {0, -n/kd}}, new double[][]{{1, -1}, {kd*n, -kd*n}}, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n, -kp-kd*n}});
+//			setModel(new double[][]{{0, 0}, {0, -n/kd}}, new double[][]{{1}, {kd*n}}, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n}});
 		} else {
-			setModel(new double[][]{{0, 0}, {0, 0}}, new double[][]{{1}, {0}}, new double[][]{{ki, 0}}, new double[][]{{kp}});
+			setModel(new double[][]{{0, 0}, {0, 0}}, new double[][]{{1, -1}, {0, 0}}, new double[][]{{ki, 0}}, new double[][]{{kp, -kp}});
+//			setModel(new double[][]{{0, 0}, {0, 0}}, new double[][]{{1}, {0}}, new double[][]{{ki, 0}}, new double[][]{{kp}});
 		}
 	}
 	
 	public void setKp(double kp) {
 		setParameters(kp, ki, kd, n, ks);
-//		if(kp >= 0)
-//		this.kp = Kp;
-//		setModel(A, B, C, new double[][]{{kp+kd*n}});
 	}
 
 	public void setKi(double ki) {
 		setParameters(kp, ki, kd, n, ks);
-//		this.ki = Ki;
-//		setModel(A, B, new double[][]{{Ki, kd}}, D);
 	}
 
 	public void setTi(double ti) {		
 		setParameters(kp, 1/ti, kd, n, ks);
-//		this.ki = this.kp / Ti;
-//		setModel(A, B, new double[][]{{ki, kd}}, D);
 	}
 
 	public void setKd(double kd) {
 		setParameters(kp, ki, kd, n, ks);
-//		if(kd > 0) {
-//			this.kd = kd;
-//		} else {
-//			this.kd = n;
-//			this.n = 0;
-//		}
-//		setModel(new double[][]{{0, 0}, {0, -n/kd}}, B, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n}});		
 	}
 
 	public void setKs(double ks) {
 		setParameters(kp, ki, kd, n, ks);
-//		this.ks = Ks;
-//		setModel(new double[][]{{0, 0}, {0, -n/kd}}, B, new double[][]{{ki, kd}}, new double[][]{{kp+kd*n}});
 	}
 	
 	public void setN(double n) {
 		setParameters(kp, ki, kd, n, ks);
-//		this.n = n;
-//		setModel(new double[][]{{0, 0}, {0, -n/kd}}, B, C, new double[][]{{kp+kd*n}});
 	}
 	
 	public void setAntiwindup(boolean enabled) {

@@ -162,7 +162,7 @@ try{
 			for(int j=0; j<ninputs; j++) dx[i] += B[i][j]*u[j];
 		}
 }catch(ArrayIndexOutOfBoundsException e ){}
-		if(updateOutputOnGetRates) updateOutput();
+//		if(updateOutputOnGetRates) updateOutput();
 		
 		return dx;
 	}
@@ -217,7 +217,7 @@ try{
 	 * 
 	 * @return An array of <i>double</i> with the outputs
 	 */
-	@Override
+/*	@Override
 	public void updateOutput() {		
 		double[] u = getInputs();
 
@@ -233,7 +233,7 @@ try{
 			System.out.println("y, x, u: "+ y.length + ", " + x.length + ", " + u.length);
 		}
 	}
-
+*/
 
 	/**
 	 * Links the states of the object to an external array. 

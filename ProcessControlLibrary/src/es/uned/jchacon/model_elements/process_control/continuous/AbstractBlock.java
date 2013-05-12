@@ -155,6 +155,6 @@ public abstract class AbstractBlock implements Block {
 	/**
 	 * Update the values of the outputs
 	 */	
-	public abstract void updateOutput();
+//	public abstract void updateOutput();
 
 }

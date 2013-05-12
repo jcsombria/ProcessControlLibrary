@@ -64,6 +64,6 @@ public class Saturation extends AbstractBlock implements Siso {
 		if(y[0] > uMax) y[0] = uMax;
 	}
 
-	@Override
-	public void updateOutput() { update(getInput(0)); }
+//	@Override
+//	public void updateOutput() { update(getInput(0)); }
 }

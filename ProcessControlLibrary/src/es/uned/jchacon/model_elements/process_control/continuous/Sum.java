@@ -70,12 +70,15 @@ public class Sum extends AbstractBlock implements Siso {
 		return getOutputs()[i];
 	}
 
-	@Override
-	public void updateOutput() {
+	public void update() {
 		double[] u = getInputs();
 
 		y[0] = 0;
 		for(int i=0; i<ninputs; i++) y[0] += signs[i]*u[i];		
+	}
+
+	public void updateOutput() { 
+		update();
 	}
 	
 /*

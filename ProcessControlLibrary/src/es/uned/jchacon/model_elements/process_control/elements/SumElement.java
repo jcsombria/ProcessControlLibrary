@@ -77,13 +77,12 @@ public class SumElement extends AbstractModelElement {
   
   public String getInitializationCode(String _name) {
 	  String signsString = signsText.getText(); 
-	  int size = signsString.length();
+/*	  int size = signsString.length();
 	  Sign[] sign = new Sign[size];
 	  
-	  for(int i=0; i<size; i++) sign[i] = (signsString.charAt(i) == '-') ? Sign.NEGATIVE : Sign.POSITIVE;
-	  String init = _name + " = new " + getConstructorName() + "(" 
-			      + ");";
-	  System.out.println(init);
+	  for(int i=0; i<size; i++) sign[i] = (signsString.charAt(i) == '-') ? Sign.NEGATIVE : Sign.POSITIVE;*/
+	  String init = _name + " = new " + getConstructorName() + "(\"" + signsString  + "\");";
+	  System.out.println("hey: "+ init);
 	  return init;
   }
 }

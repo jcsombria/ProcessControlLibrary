@@ -200,12 +200,6 @@ public class DiscreteStateSpaceModel extends AbstractBlock implements Discrete {
 		update();
 	}
 
-
-	@Override
-	public void updateOutput() {
-		// TODO Auto-generated method stub		
-	}
-	
 	public double[] getStates() {
 		return x;
 	}
