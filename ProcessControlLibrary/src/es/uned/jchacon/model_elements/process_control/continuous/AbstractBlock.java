@@ -9,21 +9,48 @@ public abstract class AbstractBlock implements Block {
 	protected int noutputs = 0;
 	protected int nstates = 0;
 	
+//	protected interface Link {
+//		public void setSource(Object src);
+//		public double getValue();
+//	};
+	
 	protected class Link {
-		Block source;
+		Source source;
 		int index;		
 		
-		public Link() { source = null; index = -1;}
+		public Link() { 
+			source = null; 
+			index = -1;
+		}
 		
-		public Link(Block source, int index){
+		public Link(Source source, int index){
 			this.source = source;
 			this.index = index;			
 		}		
 		
 		public double getValue() { 
 			if(source == null) return 0;
-			else return source.getOutput(index);
+			return source.getOutput(index);
 		}
+	};
+	
+	protected interface Source { public double getOutput(int index); }
+
+	protected class VectorSource implements Source {
+		double[] source;
+		public VectorSource(double[] source) { this.source = source; }
+		public void setSource(double[] source) { this.source = source; }
+		public double getOutput(int index) {
+			if(source == null || index < 0 || index > source.length) return 0;
+			return source[index];
+		}
+	}
+
+	protected class BlockSource implements Source {
+		Block source;
+		public BlockSource(Block source) { this.source = source; }
+		public void setSource(Block source) { this.source = source; }
+		public double getOutput(int index) { return source.getOutput(index); }
 	};
 	
 	protected Link[] links = null;
@@ -106,7 +133,7 @@ public abstract class AbstractBlock implements Block {
 	/**
 	 * Links sourceVector[sourceIndex] to the <i>inputIndex</i> input 
 	 * 
-	 * @param sourceVector The vector which contains the variable to be linked
+	 * @param source The block which contains the output to be linked
 	 * @param sourceIndex The index of the variable to be linked
 	 */	
 	public void setInput(int inputIndex, Block source, int sourceIndex) {	
@@ -114,7 +141,21 @@ public abstract class AbstractBlock implements Block {
 		|| sourceIndex >= source.getNumberOfOutputs() 
 		|| inputIndex >= getNumberOfInputs()) return;
 
-		links[inputIndex] = new Link(source, sourceIndex);
+		links[inputIndex] = new Link(new BlockSource(source), sourceIndex);
+	}
+	
+	/**
+	 * Links sourceVector[sourceIndex] to the <i>inputIndex</i> input 
+	 * 
+	 * @param sourceVector The vector which contains the variable to be linked
+	 * @param sourceIndex The index of the variable to be linked
+	 */	
+	public void setInput(int inputIndex, double[] source, int sourceIndex) {	
+		if(source == null 
+		|| sourceIndex >= source.length 
+		|| inputIndex >= getNumberOfInputs()) return;
+
+		links[inputIndex] = new Link(new VectorSource(source), sourceIndex);
 	}
 
 	/**
@@ -153,8 +194,16 @@ public abstract class AbstractBlock implements Block {
 	}
 	
 	/**
+	 * @return The value of the output 0
+	 */	
+	public double getOutput() {
+		return getOutput(0);
+	}
+
+	/**
 	 * Update the values of the outputs
 	 */	
 //	public abstract void updateOutput();
+	
 
 }

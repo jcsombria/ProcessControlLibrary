@@ -5,7 +5,7 @@
   </head>
   <body">
     <h2>
-      <img src="./Statistics.gif"> PID controller element 
+      <img src="./DiscretePidController.png"> PID controller element 
     </h2>
     <p>
       PID implements a continuous PID controller to be included in an EJS simulation.
@@ -35,10 +35,10 @@
 xc = new double[]{pid.getNumberOfStates()};
 x = new double[]{plant.getNumberOfStates()};
 
-// This code must be inserted into an ODE evolution page
+<i>// This code must be inserted into an ODE evolution page</i>
 d xc/dt = pid.getRates()
 
-// The output of the PID is obtained with <i>getOutput()</i>
+<i>// The output of the PID is obtained with </i>getOutput()
 u = pid.getOutput();
     </pre>
   </body>

@@ -1,0 +1,56 @@
+<html>
+  <head>
+  <title>Discrete Filtered PID Controller element</title>
+      <link rel="stylesheet" type="text/css" href="style.css"></link>
+  </head>
+  <body">
+    <h2>
+      <img src="./DiscretePidController.png"> PID controller element 
+    </h2>
+    <p>
+      DiscreteFilteredPID implements a continuous PID controller to be included in an EJS simulation.
+    </p>
+    <p>
+    The element is a complete implementation of a PID controller with a first-order filter, which can be directly incorporated into a simulation by
+    means of the <i>Discrete</i> interface.
+    
+    <p>
+    The implementation can be seen as a discretization of a continuous PID in the parallel form in cascade with a first-order filter,
+    described by the transfer function u(s)=(1+\frac{1}{t_i s}+t_d s)(\frac{1}{(t_f s +1)} e(s).
+    
+    The difference equation of the discrete PID is u(n)=k_1 e(n) + k_2 e(n-1) + k_3 e(n-2) + k_4 u(n-1),
+    where k_1=(k_p/alpha)*(1+t_s/t_i+t_d/t_s), k_2=(k_p/alpha)*(1+2*t_d/t_s), k_3 = (k_p/alpha)*(t_d/t_s), k_4=t_f/(alpha*t_s), and alpha=(1+t_f/t_s). 
+    
+    <h3>Usage</h3>
+      <p>
+      To add a PID element to your model, simply drag the icon element to the list of your model elements.
+      </p>
+    <p>
+    The element provides several methods to incorporate it into a simulation. Here are the most frequently used,
+    <ul>
+		<li><i>void setParameters(double kp, double ti, double td, double tf);</i></li>
+		<li><i>void setParameters(double kp, double ti, double td, double tf, double ts);</i></li>
+		<li><i>void setInput(int input, Block src, int output);</i></li>
+		<li><i>void setInput(int input, double[] src, int output);</i></li>
+		<li><i>double getOutput();</i></li>
+		<li><i>void update();</i></li>
+    </ul>
+    </p>
+        <h3>Example of use</h3>
+    <pre>
+<i>// Assume dfpid is the name of the DiscreteFilteredPidController element instance and plant is a StateSpaceModel element</i>
+<i>// This code must be inserted into an Initialization page</i>
+x = new double[]{plant.getNumberOfStates()};
+plant.setModel(A, B, C, D);
+plant.linkStates(x);
+error = new double[]{setpoint-x};
+dfpid.setInput(error, 0); // <i>link the input of the pid with </i>error[0]
+
+<i>// This code must be inserted into an ODE evolution page to integrate the state of the plant</i>
+d x/dt = plant.getRates()
+
+<i>// The output of the PID is obtained with </i>getOutput()
+u = dfpid.getOutput();
+    </pre>
+  </body>
+</html>

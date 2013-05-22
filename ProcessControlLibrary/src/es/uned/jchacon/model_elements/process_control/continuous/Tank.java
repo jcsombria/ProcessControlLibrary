@@ -72,4 +72,13 @@ public class Tank extends StateSpaceModel implements Hybrid {
 		}		
 		return K * Math.sqrt(hsp);
 	}
+	
+	public void setTankSection(double tankSection) {
+		if(tankSection <= 0) return;
+		this.tankSection = tankSection;
+	}
+	
+	public double getTankSection() {
+		return tankSection;
+	}
 }

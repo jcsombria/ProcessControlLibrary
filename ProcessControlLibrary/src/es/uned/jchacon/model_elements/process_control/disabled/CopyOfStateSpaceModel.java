@@ -2,7 +2,7 @@
  * @author Jesús Chacón <jchacon@bec.uned.es>
  */
 
-package es.uned.jchacon.model_elements.process_control;
+package es.uned.jchacon.model_elements.process_control.disabled;
 
 import es.uned.jchacon.model_elements.process_control.continuous.AbstractBlock;
 import es.uned.jchacon.model_elements.process_control.continuous.Continuous;

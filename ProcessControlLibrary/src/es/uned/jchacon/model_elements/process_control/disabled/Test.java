@@ -1,4 +1,4 @@
-package es.uned.jchacon.model_elements.process_control;
+package es.uned.jchacon.model_elements.process_control.disabled;
 
 import java.awt.event.ActionEvent;
 import java.util.regex.Pattern;

@@ -49,7 +49,7 @@ private ModelElementEditor regionRunEditor;
 
   @Override
   protected String getHtmlPage() { 
-	return "es/uned/jchacon/model_elements/process_control/DiscretePidController.html";
+	return "es/uned/jchacon/model_elements/process_control/elements/resources/DiscretePidController.html";
   }
 
   @Override

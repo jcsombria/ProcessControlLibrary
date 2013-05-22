@@ -10,6 +10,6 @@ package es.uned.jchacon.model_elements.process_control.continuous;
  * An interface for an object representing a discrete simulation block. 
  */
 public interface Discrete extends Block {
-	public void update(double x);
+//	public void update(double x);
 	public void update();	
 }

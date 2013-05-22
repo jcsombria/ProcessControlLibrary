@@ -23,8 +23,6 @@ public class SodSampler extends AbstractBlock implements Discrete, Siso {
 	
 	public double getTolerance() { return 1e-5; }
 	
-	public void init(double value) { y[0] = (Math.floor(value/delta)+alpha)*delta; }
-	
 	public void setDelta(double delta) { this.delta = delta; }
 	
 	public void setAlpha(double alpha) { this.alpha = alpha; }
@@ -64,6 +62,8 @@ public class SodSampler extends AbstractBlock implements Discrete, Siso {
 	}
 	
 	public void init() { init(getInput(0));	}
+	
+	public void init(double value) { y[0] = (Math.floor(value/delta)+alpha)*delta; }
 	
 /* 
  * Interface Siso

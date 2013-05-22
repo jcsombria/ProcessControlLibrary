@@ -192,9 +192,9 @@ public class DiscreteStateSpaceModel extends AbstractBlock implements Discrete {
 	}
 	
 	/* Returns the output of the system as y(t)=C*x(t)+D*u(t), for the given values of x and u. */
-	public double[] getOutput() {
-		return y;
-	}
+//	public double[] getOutputs() {
+//		return y;
+//	}
 
 	public void update(double x) {
 		update();
